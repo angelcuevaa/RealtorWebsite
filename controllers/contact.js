@@ -1,4 +1,4 @@
-const email = require("../models/email")
+const email = require("../services/email")
 
 module.exports = {
     get: (req, res) =>{
