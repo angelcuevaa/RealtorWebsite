@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <form class="ui form">
+    <form class="ui form" id = "verifyForm">
         <div class="field">
           <label>Email</label>
           <input type="text" name="email" placeholder="Email">
@@ -25,6 +25,44 @@
           </div>
         <button class="ui button" type="submit">Submit</button>
       </form>
+
+      <script>
+        document.getElementById('verifyForm').addEventListener('submit', runVerify)
+
+        function runVerify(e){
+          e.preventDefault();
+          runCaptcha();
+        }
+
+        function runCaptcha(){
+
+          grecaptcha.execute(process.env.RECAPTCHA_SITE_KEY, {action: 'homepage'}).then(function(token){
+          
+          const name = document.querySelector('#name');
+          const message = document.querySelector('#message');
+          const email = document.querySelector('#email');
+          const captcha = token;
+
+          sendData(name,message,email,captcha);
+        });
+      }
+
+        function sendData(name, message, email, captcha){
+            const info = JSON.stringify({name:name, message:message, email: email, captcha:captcha});
+
+            //change verify to controller route
+            fetch('/contact/sendRecaptcha', {
+              method: 'POST',
+              headers: {
+                'Accept' : 'application/json, tect/plain, */*',
+                'Content-Type': 'application/json'
+              },
+              body: info
+            }).then((res) => res.json())
+            .then((data) => {})
+        }
+
+      </script>
 
 </body>
 </html>
