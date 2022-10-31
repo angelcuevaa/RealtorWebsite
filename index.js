@@ -4,8 +4,14 @@ const contactRoutes = require ('./routes/contact')
 
 const app = express()
 
-app.get('/', (req, res) =>{
-    res.send("Hello World!")
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', (req,res) =>{
+    res.send("Hello World!");
+})
+app.get('/contact', (req, res) =>{
+    res.render('contact')
 })
 
 app.listen (3200, () =>{
