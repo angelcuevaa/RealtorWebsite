@@ -1,6 +1,7 @@
 const email = require("../services/email")
 const recaptcha = require("../services/recaptcha")
 
+
 module.exports = {
     get: (req, res) =>{
         res.send ("In contact controller..")
@@ -10,7 +11,9 @@ module.exports = {
         res.send("Email sent?")
     },
     sendRecaptcha: (req, res) => {
-        recaptchaResponse = recaptcha.sendRecptcha(req.params.token);
-        res.send(res.json(recaptchaResponse));
+        var recaptchaResponse = recaptcha.sendRecaptcha(req.body.captcha);
+        //this works, just returning the string as undefined
+        console.log(recaptchaResponse);
+        res.send(recaptchaResponse);
     }
 }

@@ -1,20 +1,33 @@
 const bodyParser = require('body-parser');
 const fetch = require('isomorphic-fetch');
+const request = require('request');
 
 let sendRecaptcha = (token) =>{
     const secret_key = process.env.RECAPTCHA_SECRET_KEY;
-    const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}`;
+    const url = "https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}";
 
 
-    fetch(url, {
-        method: 'post'
+
+    if (!token){
+        message = 'captcha token not defined';
+    }
+    request(url, (err, response, body) => {
+        if (err){
+            return 'there was an error';
+        }
+        body = JSON.parse(body);
+
+
+        if (!body || body.score < 0.4){
+
+            return 'you are a robot... score: ' + body.score;
+        }
+       console.log(body);
+        return "you are valid.. score: " + body.score;
+       
+        
     })
-    // need to preturn the results of fetch to the controller
-        .then(response => {
-            return response.json()
-        })
-       // .then(google_response => res.json({ google_response }))
-       // .catch(error => res.json({ error }));
+    
 };
  module.exports = {
     sendRecaptcha
