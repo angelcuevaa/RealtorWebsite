@@ -1,5 +1,6 @@
-const email = require("../services/email")
-const recaptcha = require("../services/recaptcha")
+const email = require("../services/EmailService")
+const recaptcha = require("../services/RecaptchaService")
+const ContactService = require("../services/ContactService")
 
 
 module.exports = {
@@ -13,7 +14,10 @@ module.exports = {
     sendRecaptcha: (req, res) => {
         var recaptchaResponse = recaptcha.sendRecaptcha(req.body.captcha);
         //this works, just returning the string as undefined
-        console.log(recaptchaResponse);
         res.send(recaptchaResponse);
+    },
+    ContactAdmin: (req, res) => {
+        var contactAdminResponse = ContactService.ContactAdmin(req.body.email, req.body.name, req.body.message, req.body.token);
+        res.send(contactAdminResponse);
     }
 }

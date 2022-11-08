@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require ('express')
-const contactRoutes = require ('./routes/contact')
+const contactRoutes = require ('./routes/ContactRoutes')
 bodyParser = require('body-parser');
 
 const app = express()
@@ -14,7 +14,7 @@ app.get('/', (req,res) =>{
     res.send("Hello World!");
 })
 app.get('/contact', (req, res) =>{
-    res.render('contact')
+    res.render('ContactView')
 })
 
 app.listen (3200, () =>{

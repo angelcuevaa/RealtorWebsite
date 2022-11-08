@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="ui raised very padded text container segment">
-        <h2 class="ui header">Subscribe Form</h2>
+        <h2 class="ui header">Contact Us</h2>
     <form class="ui form" id="subscribeForm">
         <div class="field">
           <label>Name</label>
@@ -46,7 +46,7 @@
 
         console.log(captcha)
 
-            fetch('/contact/sendRecaptcha',{
+            fetch('/contact/ContactAdmin',{
             method: 'POST',
             headers:{
                     'Accept': 'application/json, text/plain, */*',
@@ -54,7 +54,7 @@
                 
             },
             body:JSON.stringify({"name":name,"message":message,"email":email,"captcha":captcha})
-            }).then(res => alert(res.value))     
+            }).then(res => res.json()).then(data =>{alert(data.msg)})     
 
         });
         
