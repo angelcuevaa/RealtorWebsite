@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require ('express')
 const contactRoutes = require ('./routes/ContactRoutes')
+const RegisterRoutes = require('./routes/RegisterRoutes');
 bodyParser = require('body-parser');
 
 const app = express()
@@ -23,3 +24,4 @@ app.listen (3200, () =>{
 
 //routes
 app.use(contactRoutes)
+app.use(RegisterRoutes);
