@@ -1,4 +1,4 @@
-let mysql = require('mysql');
+let mysql = require('mysql2');
 let conn = mysql.createConnection({
     user: "root",
     host: "localhost",
@@ -6,6 +6,7 @@ let conn = mysql.createConnection({
     database: "realtor"
   });
 
-conn.query ('select* from realtor.listings', (err, res) =>{
-    return console.log(res);
-});
+conn.connect((err) => {
+  if (err) throw err;
+  console.log('Connected to MySQL Server!');
+})
