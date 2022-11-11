@@ -77,12 +77,34 @@ function CheckAddressExist(street, callback){
         return callback(null, res);
     })
 }
+function DeleteListing(listingId, callback){
+    var query = 'delete from realtor.listings where listings_id = ?'
+
+    conn.query(query, [listingId], function(err, res){
+        if (err){
+            return callback(err, null)
+        }
+        return callback(null, res)
+    })
+}
+function DeleteAddress(addressId, callback){
+    var query = 'delete from realtor.address where address_id = ?'
+
+    conn.query(query, [addressId], function(err, res){
+        if (err){
+            return callback(err, null)
+        }
+        return callback(null, res)
+    })
+}
 module.exports = {
     GetAllListings,
     NewGetAllListings,
     PostAddress,
     GetAddressId,
     PostListing,
-    CheckAddressExist
+    CheckAddressExist,
+    DeleteListing,
+    DeleteAddress
 };
 

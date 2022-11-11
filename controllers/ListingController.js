@@ -12,17 +12,31 @@ module.exports = {
         })
     },
     PostListing : (req, res) => {
+        //change return to be a json object instead of random strings
         if (Object.keys(req.body).length === 0){
-            res.send("no arguments passed");
+            res.send({"Error" : "No arguments sent"});
         }
         else{
-            ListingService.PostListing(req.body, function(err, response){
-                if (err){
-                    return res.send(err);
-                }
+            ListingService.PostListing(req.body, function(response){
                 return res.send(response);
             })
         }
         
+    },
+    DeleteListing : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.DeleteListing(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    DeleteAddress : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.DeleteAddress(req.body, function(response){
+            return res.send(response);
+        })
     }
 }

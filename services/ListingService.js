@@ -4,13 +4,12 @@ const ListingController = require('../controllers/ListingController')
 //probs need to make a callback to the controller and handle the data there
 function GetAllListings(callback){
     listingDAL.NewGetAllListings(function(err, rows){
-       if (err){
-        var errResponse = {
-            "DatabaseMessage" : err,
-            "ErrorMessage" : "There was an issue with the database"
+        if (err){
+            return callback({
+                "Error" : err,
+                "Response" : ""
+            })
         }
-        return callback(errResponse)
-       }
        
        return callback(rows)
     });
@@ -25,7 +24,10 @@ function PostListing(requestBody, callback){
     //need to check if address exists before posting it
     listingDAL.CheckAddressExist(address.street, function(err, res){
         if (err){
-            return callback(err)
+            return callback({
+                "Error" : err,
+                "Response" : ""
+            })
         }
         else{
             var count = res[0]['count(*)'];
@@ -33,7 +35,10 @@ function PostListing(requestBody, callback){
             if (count == 0){
                 listingDAL.PostAddress(address, function(err, res){
                     if (err){
-                        return callback(err);
+                        return callback({
+                            "Error" : err,
+                            "Response" : ""
+                        })
                     }
                 })
             }
@@ -42,7 +47,10 @@ function PostListing(requestBody, callback){
    
     listingDAL.GetAddressId(address, function(err, res){
         if (err){
-            return callback (err);
+            return callback({
+                "Error" : err,
+                "Response" : ""
+            })
         }
 
     
@@ -60,14 +68,53 @@ function PostListing(requestBody, callback){
         };
         listingDAL.PostListing(listing, function(err, res){
             if (err){
-                return callback(err);
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
             }
-            return callback(res);
+            return callback({
+            "Error" : "",
+            "Response" : res
+        });
         })
+    })
+}
+function DeleteListing(requestBody, callback){
+
+    listingDAL.DeleteListing(requestBody.listingId, function(err, response){
+    
+        if (err){
+            return callback({
+                "Error" : err,
+                "Rows Deleted" : ""
+            })
+        }
+        return callback({
+            "Error" : "",
+            "Rows Deleted" : response.affectedRows
+        });
+    })
+}
+function DeleteAddress(requestBody, callback){
+    listingDAL.DeleteAddress(requestBody.addressId, function(err, response){
+    
+        if (err){
+            return callback({
+                "Error" : err,
+                "Rows Deleted" : ""
+            })
+        }
+        return callback({
+            "Error" : "",
+            "Rows Deleted" : response.affectedRows
+        });
     })
 }
 //need to do delete and update listings and get specific types of listings based on location, status price, etc.
 module.exports = {
     GetAllListings,
-    PostListing
+    PostListing,
+    DeleteListing,
+     DeleteAddress
 }
