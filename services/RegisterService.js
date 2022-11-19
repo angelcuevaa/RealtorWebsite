@@ -10,6 +10,18 @@ function RegisterAccountService(username, password){
         RegisterDAL.PostUser(username, hash)
     })
 }
+
+function LoginAccountService(username, password, callback){
+    RegisterDAL.getUser(username, password, function(err, rows){
+        if (err){
+            callback(err, null);
+        }
+        else{
+            callback(null, rows);        
+        }
+    })
+}
 module.exports = {
-    RegisterAccountService
+    RegisterAccountService,
+    LoginAccountService
 }

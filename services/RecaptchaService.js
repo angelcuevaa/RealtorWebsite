@@ -7,7 +7,6 @@ function sendRecaptcha (token) {
     const url = "https://www.google.com/recaptcha/api/siteverify?secret=" + secret_key + "&response=" + token;
     var message;
 
-
     if (!token){
         message = {
             "success": false, 
