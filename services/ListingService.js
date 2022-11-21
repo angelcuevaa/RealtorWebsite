@@ -45,6 +45,7 @@ function PostListing(requestBody, callback){
         }
     })
    
+    //might need ti stick all of this in the above method call to avoid sending 2 responses error
     listingDAL.GetAddressId(address, function(err, res){
         if (err){
             return callback({
@@ -53,7 +54,7 @@ function PostListing(requestBody, callback){
             })
         }
 
-    
+        //add error check, if addressId isnt returned then send an error out
 
         // store listing now since we have the addressID
         var listing = {
@@ -111,10 +112,24 @@ function DeleteAddress(requestBody, callback){
         });
     })
 }
-//need to do delete and update listings and get specific types of listings based on location, status price, etc.
+function DeleteAddressAndListing(requestBody, callback){
+    DeleteAddress(requestBody, function(response){
+        if (response.Error != null){
+            return callback (response);
+        }
+        DeleteListing(requestBody, function(response){
+            return callback (response);
+        })
+    })
+    
+}
+//need to do update listings and get specific types of listings based on location, status price, etc.
+//for update listings, need to send elements that werent changed with the ones that were changed
+//also need to be able to post, delete, get, and update with pictures/videos
 module.exports = {
     GetAllListings,
     PostListing,
     DeleteListing,
-     DeleteAddress
+    DeleteAddress,
+    DeleteAddressAndListing
 }

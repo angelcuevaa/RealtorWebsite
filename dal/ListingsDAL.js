@@ -97,6 +97,7 @@ function DeleteAddress(addressId, callback){
         return callback(null, res)
     })
 }
+
 module.exports = {
     GetAllListings,
     NewGetAllListings,

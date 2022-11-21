@@ -38,5 +38,15 @@ module.exports = {
         ListingService.DeleteAddress(req.body, function(response){
             return res.send(response);
         })
+    },
+    DeleteAddressAndListing : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.DeleteAddressAndListing(req.body, function(response){
+            return res.send(response);
+        })
+
     }
+    //delete listing and address
 }
