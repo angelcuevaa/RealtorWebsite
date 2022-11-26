@@ -123,13 +123,71 @@ function DeleteAddressAndListing(requestBody, callback){
     })
     
 }
+function PostListingPhoto(requestFiles, requestBody, callback){
+    //need to store data and type of pics in own arrays then call function to store them in database
+        var listingId = requestBody.listingId;
+
+        var files = [];
+        var fileKeys = Object.keys(requestFiles);
+
+        fileKeys.forEach(function(key) {
+            files.push(requestFiles[key]);
+        });
+
+        files.forEach(file =>{
+            var data =  file.data;
+            var type = file.mimetype;
+
+            listingDAL.PostListingPhoto(listingId, data, type, function(err){
+                if (err){
+                    return callback({
+                        "Error" : err
+                    })
+                }
+            })
+        })
+        return callback({
+            "Error" : "",
+            "Response" :"Images Saved Successfully"
+        })
+    }
+    function GetListingPhoto(requestBody, callback){
+        listingDAL.GetListingPhotos(requestBody.listingId, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        });
+    }
+    function DeleteListingPhoto(requestBody, callback){
+        listingDAL.DeleteListingPhoto(requestBody.photoId, function(err, res){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Rows Deleted" : ""
+                })
+            }
+            return callback({
+                "Error" : "",
+                "Rows Deleted" : res.affectedRows
+            });
+        })
+    }
 //need to do update listings and get specific types of listings based on location, status price, etc.
 //for update listings, need to send elements that werent changed with the ones that were changed
-//also need to be able to post, delete, get, and update with pictures/videos
+//also need to be able to post, delete, get, and update with pictures/videos, need listingID as 
+//FK in the pics and videos table
 module.exports = {
     GetAllListings,
     PostListing,
     DeleteListing,
     DeleteAddress,
-    DeleteAddressAndListing
+    DeleteAddressAndListing,
+    PostListingPhoto,
+    GetListingPhoto,
+    DeleteListingPhoto
 }

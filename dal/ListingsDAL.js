@@ -97,6 +97,37 @@ function DeleteAddress(addressId, callback){
         return callback(null, res)
     })
 }
+function PostListingPhoto(listingId, photoData, photoType, callback){
+    var query = 'insert into realtor.photos (listing_id, photo_data, photo_type)' +
+    'values(?, ?, ?)'
+
+    conn.query(query, [listingId, photoData, photoType], function(err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingPhotos(listingId, callback){
+    var query = 'SELECT * FROM realtor.photos where listing_id = ?';
+
+    conn.query(query, [listingId], function(err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function DeleteListingPhoto(photoId, callback){
+    var query = 'delete from realtor.photos where photo_id = ?';
+
+    conn.query(query, [photoId], function(err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
 
 module.exports = {
     GetAllListings,
@@ -106,6 +137,10 @@ module.exports = {
     PostListing,
     CheckAddressExist,
     DeleteListing,
-    DeleteAddress
+    DeleteAddress,
+    PostListingPhoto,
+    GetListingPhotos,
+    DeleteAddress,
+    DeleteListingPhoto
 };
 

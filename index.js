@@ -4,6 +4,7 @@ const contactRoutes = require ('./routes/ContactRoutes')
 const RegisterRoutes = require('./routes/RegisterRoutes');
 const ListingRoutes = require('./routes/ListingRoutes')
 bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 const app = express()
 
@@ -11,6 +12,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 app.get('/', (req,res) =>{
     res.send("Hello World!");
