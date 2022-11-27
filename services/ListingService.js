@@ -179,8 +179,9 @@ function PostListingPhoto(requestFiles, requestBody, callback){
     }
 //need to do update listings and get specific types of listings based on location, status price, etc.
 //for update listings, need to send elements that werent changed with the ones that were changed
-//also need to be able to post, delete, get, and update with pictures/videos, need listingID as 
-//FK in the pics and videos table
+//update with pictures/videos, need listingID as 
+//need to return pics when getting listings
+
 module.exports = {
     GetAllListings,
     PostListing,
