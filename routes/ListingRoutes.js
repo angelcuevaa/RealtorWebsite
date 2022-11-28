@@ -10,5 +10,14 @@ router.delete('/listings/deleteAddressAndListing', controller.DeleteAddressAndLi
 router.post('/listings/postPhoto', controller.PostPhoto)
 router.get('/listings/getPhotos', controller.GetPhoto)
 router.delete('/listings/deletePhotos', controller.DeletePhoto)
+router.get('/listings/getListingPriceMore', controller.GetListingPriceMore)
+router.get('/listings/getListingPriceLess', controller.GetListingPriceLess)
+router.get('/listings/getListingBedsMore', controller.GetListingBedsMore)
+router.get('/listings/getListingBedsLess', controller.GetListingBedsLess)
+router.get('/listings/getListingBathsMore', controller.GetListingBathsMore)
+router.get('/listings/getListingBathsLess', controller.GetListingBathsLess)
+router.get('/listings/getListingCity', controller.GetListingCity)
+router.get('/listings/getListingZipcode', controller.GetListingZipcode)
+router.get('/listings/getListingState', controller.GetListingState)
 
 module.exports = router;

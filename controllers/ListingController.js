@@ -83,6 +83,77 @@ module.exports = {
         ListingService.DeleteListingPhoto(req.body, function(response){
             return res.send(response);
         })
+    },
+    GetListingPriceMore : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingPriceMore(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingPriceLess : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingPriceLess(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingBedsMore : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingBedsMore(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingBedsLess : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingBedsLess(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingBathsMore : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingBathsMore(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingBathsLess : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingBathsLess(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingCity : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingCity(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingZipcode : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingZipcode(req.body, function(response){
+            return res.send(response);
+        })
+    },
+    GetListingState : (req, res) => {
+        if (Object.keys(req.body).length === 0){
+            return res.send({"Error" : "No arguments sent"});
+        }
+        ListingService.GetListingState(req.body, function(response){
+            return res.send(response);
+        })
     }
-    //delete listing and address
 }
