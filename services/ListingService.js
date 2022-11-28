@@ -177,9 +177,117 @@ function PostListingPhoto(requestFiles, requestBody, callback){
             });
         })
     }
+    function GetListingPriceMore(requestBody, callback){
+        listingDAL.GetListingPriceMore(requestBody.listingPrice, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingPriceLess(requestBody, callback){
+        listingDAL.GetListingPriceLess(requestBody.listingPrice, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingBedsMore(requestBody, callback){
+        listingDAL.GetListingBedsMore(requestBody.beds, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingBedsLess(requestBody, callback){
+        listingDAL.GetListingBedsLess(requestBody.beds, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingBathsMore(requestBody, callback){
+        listingDAL.GetListingBathsMore(requestBody.baths, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingBathsLess(requestBody, callback){
+        listingDAL.GetListingBathsLess(requestBody.baths, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingCity(requestBody, callback){
+        listingDAL.GetListingCity(requestBody.city, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingZipcode(requestBody, callback){
+        listingDAL.GetListingZipcode(requestBody.zipcode, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
+    function GetListingState(requestBody, callback){
+        listingDAL.GetListingState(requestBody.state, function(err, rows){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+           
+           return callback(rows)
+        })
+    }
 //need to do update listings and get specific types of listings based on location, status price, etc.
 //for update listings, need to send elements that werent changed with the ones that were changed
-//update with pictures/videos, need listingID as 
+//update with pictures 
 //need to return pics when getting listings
 
 module.exports = {
@@ -190,5 +298,14 @@ module.exports = {
     DeleteAddressAndListing,
     PostListingPhoto,
     GetListingPhoto,
-    DeleteListingPhoto
+    DeleteListingPhoto,
+    GetListingPriceMore,
+    GetListingBedsMore,
+    GetListingBathsLess,
+    GetListingBathsMore,
+    GetListingState,
+    GetListingCity,
+    GetListingZipcode,
+    GetListingBedsLess,
+    GetListingPriceLess
 }
