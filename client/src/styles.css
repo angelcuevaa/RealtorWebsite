@@ -11,6 +11,11 @@ html {
   margin: 20px 0 30px;
 }
 
+/* For Pop up calendly */
+.calendly-popup {
+  background-color: white !important;
+}
+
 .sub-heading {
   font-family: "Brush Script MT", cursive;
   position: relative;

@@ -21,7 +21,7 @@ function Home() {
 
 
   useEffect(() => {
-    Axios.get("http://localhost:3200/listings").then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_BASE_URL}/listings`).then((response) => {
       setListing(response.data);
     });
   }, []);

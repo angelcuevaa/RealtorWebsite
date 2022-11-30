@@ -31,7 +31,7 @@ export default function Admin() {
 
   }]);
 
-  const listingImage = useRef(null);
+  // const listingImage = useRef(null);
   const listingName = useRef();
   const listingPrice = useRef();
   const listingDescription = useRef();
@@ -47,7 +47,7 @@ export default function Admin() {
   const updateListing = async (id) => {
     console.log(id)
     setIsUpdating(true);
-    await Axios.get(`http://localhost:3200/our-listing/${id}`).then((response) => {
+    await Axios.get(`${process.env.REACT_APP_API_BASE_URL}/our-listing/${id}`).then((response) => {
       setSingleListing(response.data);
     });
   };
@@ -82,11 +82,11 @@ export default function Admin() {
 
   const formHandler = (e) => {
     e.preventDefault();
+
     const data = {
       listingName: listingName.current.value,
       listingPrice: Number(listingPrice.current.value),
       listingDescription: listingDescription.current.value,
-      // listingImage: listingImage.current.value.split("\\")[2],
       beds: Number(beds.current.value),
       baths: Number(baths.current.value),
       status: Number(status.current.value),
@@ -96,11 +96,13 @@ export default function Admin() {
       state: state.current.value,
       zipcode: Number(zipcode.current.value),
     }
+    console.log(data)
     Axios.post("http://localhost:3200/listings/post", data).then(() => {
       console.log("success");
       // close modal here
-      // window.location.reload();
+      window.location.reload();
     });
+
   };
 
   const deleteListing = async (id) => {
@@ -143,7 +145,9 @@ export default function Admin() {
         {listing.map((item, index) => (
           <div className="col-md-4 mb-4" key={index}>
             <div className="card border-0">
-              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." />
+              {/* <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." /> */}
+              <img src="\image.avif" className="card-img-top" alt="..." />
+              
               <div>
                 <div className="p-2 bg-info">
                   <span className="me-3">{item['listing_number_of_beds']} Beds</span>
@@ -198,10 +202,9 @@ export default function Admin() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form onSubmit={
+              <form encType="multipart/form-data" onSubmit={
                 isUpdating ? submitUpdate : formHandler
-              }
-              encType="multipart/form-data">
+              }>
                 <div className="mb-3">
                   <label htmlFor="listing_name" className="form-label
                   ">Listing Name</label>
@@ -236,7 +239,7 @@ export default function Admin() {
                   <input type="file" className="form-control" id="listing_image"
                     ref={listingImage}
                     name="listing_image"
-                    accept="image/*"
+                    // accept="image/*"
                     aria-describedby="listing_image" />
                 </div> */}
                 <div className="mb-3">

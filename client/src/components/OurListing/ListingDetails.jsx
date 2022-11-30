@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
+import { PopupButton } from "react-calendly";
 
 export default function ListingDetails() {
 
@@ -8,15 +9,18 @@ export default function ListingDetails() {
 
     const { id } = useParams();
 
+    const url = process.env.REACT_APP_API_BASE_URL;
+    console.log(url);
+
     useEffect(() => {
+
         try {
-            Axios.get(`http://localhost:3200/our-listing/${id}`).then((response) => {
+            Axios.get(`${process.env.REACT_APP_API_BASE_URL}/our-listing/${id}`).then((response) => {
                 setListing(response.data[0]);
             });
         } catch (error) {
             console.log(error);
         }
-
 
     }, []);
 
@@ -29,15 +33,15 @@ export default function ListingDetails() {
             <h1 className='text-center'>{listing['listing_name']}</h1>
             <div className='row d-flex mt-5'>
                 <div className='col-md-8'>
-                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." />
-                </div>  
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." />
+                </div>
                 <div className='col-md-4'>
                     <div className='list-group'>
-                    <div className='list-group-item'>
-                            <h6><span className='fw-bold'>Property Status: </span> 
-                            {
-                                listing['listing_status'] === 1 ? 'For Sale' : "Not For Sale"
-                            }
+                        <div className='list-group-item'>
+                            <h6><span className='fw-bold'>Property Status: </span>
+                                {
+                                    listing['listing_status'] === 1 ? 'For Sale' : "Not For Sale"
+                                }
                             </h6>
                         </div>
                         <div className='list-group-item'>
@@ -52,8 +56,17 @@ export default function ListingDetails() {
                         <div className='list-group-item'>
                             <h6><span className='fw-bold'>Location:</span> {listing['street']}, {listing['city']}, {listing['state']}, {listing['zipcode']}</h6>
                         </div>
+                        <PopupButton
+                            className='btn btn-primary'
+                            url={process.env.REACT_APP_CALENDLY_URL}
+                            rootElement={document.getElementById("root")}
+                            text="Click here to schedule!"
+                        />
                     </div>
                 </div>
+
+
+
             </div>
             <div className='mt-5 mb-5'>
                 <h3 className='mt-5'>Description</h3>
