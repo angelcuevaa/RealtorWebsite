@@ -145,6 +145,168 @@ function DeleteAddress(addressId, callback){
         return callback(null, res)
     })
 }
+
+function PostListingPhoto(listingId, photoData, photoType, callback){
+    var query = 'insert into realtor.photos (listing_id, photo_data, photo_type)' +
+    'values(?, ?, ?)'
+
+    conn.query(query, [listingId, photoData, photoType], function(err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingPhotos(listingId, callback){
+    var query = 'SELECT * FROM realtor.photos where listing_id = ?';
+
+    conn.query(query, [listingId], function(err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function DeleteListingPhoto(photoId, callback){
+    var query = 'delete from realtor.photos where photo_id = ?';
+
+    conn.query(query, [photoId], function(err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+//more than or equal to price asked for
+function GetListingPriceMore(listingPrice, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.listings.listing_price >= ?';
+
+    conn.query(query, [listingPrice], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+//less than or equal to price asked for
+function GetListingPriceLess(listingPrice, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.listings.listing_price <= ?';
+
+    conn.query(query, [listingPrice], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+//more than or equal to numberofbeds asked for
+function GetListingBedsMore(numberOfBeds, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.listings.listing_number_of_beds >= ?';
+
+    conn.query(query, [numberOfBeds], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+//less than or equal to numberofbeds asked for
+function GetListingBedsLess(numberOfBeds, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.listings.listing_number_of_beds <= ?';
+
+    conn.query(query, [numberOfBeds], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingBathsMore(numberOfBaths, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.listings.listing_number_of_baths >= ?';
+
+    conn.query(query, [numberOfBaths], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingBathsLess(numberOfBaths, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.listings.listing_number_of_baths <= ?';
+
+    conn.query(query, [numberOfBaths], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingCity(city, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.address.city = ?';
+
+    conn.query(query, [city], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingZipcode(zipcode, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.address.zipcode = ?';
+
+    conn.query(query, [zipcode], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
+function GetListingState(state, callback){
+    var query = 'SELECT realtor.listings.*, realtor.address.*, realtor.photos.*' + 
+    'From realtor.listings' +
+    'inner join realtor.address on realtor.listings.address_id = realtor.address.address_id' +
+    'inner join realtor.photos on realtor.listings.listings_id = realtor.photos.listing_id' +
+    'where realtor.address.state = ?';
+
+    conn.query(query, [state], function (err, res){
+        if (err){
+            return callback(err, null);
+        }
+        return callback(null, res);
+    })
+}
 module.exports = {
     GetAllListings,
     GetListingById,
@@ -156,6 +318,19 @@ module.exports = {
     CheckAddressExist,
     UpdateAddress,
     DeleteListing,
-    DeleteAddress
+    DeleteAddress,
+    PostListingPhoto,
+    GetListingPhotos,
+    DeleteAddress,
+    DeleteListingPhoto,
+    GetListingPriceMore,
+    GetListingBedsMore,
+    GetListingBathsLess,
+    GetListingBathsMore,
+    GetListingState,
+    GetListingCity,
+    GetListingZipcode,
+    GetListingBedsLess,
+    GetListingPriceLess
 };
 
