@@ -19,6 +19,5 @@ router.get('/listings/getListingBathsLess', controller.GetListingBathsLess)
 router.get('/listings/getListingCity', controller.GetListingCity)
 router.get('/listings/getListingZipcode', controller.GetListingZipcode)
 router.get('/listings/getListingState', controller.GetListingState)
-router.put('/listings/updateAddress', controller.UpdateAddress)
 
 module.exports = router;

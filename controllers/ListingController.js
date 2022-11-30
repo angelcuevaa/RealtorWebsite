@@ -155,13 +155,5 @@ module.exports = {
         ListingService.GetListingState(req.body, function(response){
             return res.send(response);
         })
-    },
-    UpdateAddress : (req, res) => {
-        if (Object.keys(req.body).length === 0){
-            return res.send({"Error" : "No arguments sent"});
-        }
-        ListingService.UpdateAddress(req.body, function(response){
-            return res.send(response);
-        })
     }
 }

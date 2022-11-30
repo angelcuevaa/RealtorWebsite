@@ -15,18 +15,14 @@ function GetAllListings(callback){
     });
 }
 function PostListing(requestBody, callback){
-    //need to post listing, then get the id to use on the address post
-    var listing = {
-        "listingName" : requestBody.listingName,
-        "listingPrice" : requestBody.listingPrice,
-        "listingDescription" : requestBody.listingDescription,
-        "beds" : requestBody.beds,
-        "baths" : requestBody.baths,
-        "status" : requestBody.status,
-        "date" : new Date()
+    var address = {
+        "street" : requestBody.street,
+        "city" : requestBody.city,
+        "state" : requestBody.state,
+        "zipcode" : requestBody.zipcode
     };
     //need to check if address exists before posting it
-    listingDAL.CheckListingExist(listing, function(err, res){
+    listingDAL.CheckAddressExist(address.street, function(err, res){
         if (err){
             return callback({
                 "Error" : err,
@@ -37,8 +33,7 @@ function PostListing(requestBody, callback){
             var count = res[0]['count(*)'];
             
             if (count == 0){
-                //date not being added into saved listing
-                listingDAL.PostListing(listing, function(err, res){
+                listingDAL.PostAddress(address, function(err, res){
                     if (err){
                         return callback({
                             "Error" : err,
@@ -47,61 +42,44 @@ function PostListing(requestBody, callback){
                     }
                 })
             }
-            //get listingId
-            listingDAL.GetListingId(listing, function(err, res){
-                if (err){
-                    return callback({
-                        "Error" : err,
-                        "Response" : ""
-                    })
-                }
-                var address = {
-                    "street" : requestBody.street,
-                    "city" : requestBody.city,
-                    "state" : requestBody.state,
-                    "zipcode" : requestBody.zipcode,
-                    "listingId" : res[0]["listings_id"]
-                };
-                listingDAL.CheckAddressExist(address, function(err, res){
-                    if (err){
-                        return callback({
-                            "Error" : err,
-                            "Response" : ""
-                        })
-                    }
-                    else{
-                        var count = res[0]['count(*)'];
-            
-                         if (count == 0){
-                        //date not being added into saved listing
-                         listingDAL.PostAddress(address, function(err, res){
-                        if (err){
-                            return callback({
-                                "Error" : err,
-                                "Response" : ""
-                            })
-                         }
-                         else{
-                            return callback({
-                            "Error" : "",
-                            "Response" : "Saved Successfully"
-                         })
-                        }
-                        
-                        })
-                    }
-                    else{
-                        return callback({
-                            "Error" : "",
-                            "Response" : "Duplicate Entry, Nothing Was Changed"
-                         })
-                    }
-                }
+        }
+    })
+   
+    //might need ti stick all of this in the above method call to avoid sending 2 responses error
+    listingDAL.GetAddressId(address, function(err, res){
+        if (err){
+            return callback({
+                "Error" : err,
+                "Response" : ""
             })
+        }
 
+        //add error check, if addressId isnt returned then send an error out
+
+        // store listing now since we have the addressID
+        var listing = {
+            "listingName" : requestBody.listingName,
+            "listingPrice" : requestBody.listingPrice,
+            "listingDescription" : requestBody.listingDescription,
+            "beds" : requestBody.beds,
+            "baths" : requestBody.baths,
+            "status" : requestBody.status,
+            "addressId" : res[0]["address_id"],
+            "date" : new Date()
+        };
+        listingDAL.PostListing(listing, function(err, res){
+            if (err){
+                return callback({
+                    "Error" : err,
+                    "Response" : ""
+                })
+            }
+            return callback({
+            "Error" : "",
+            "Response" : res
+        });
         })
-    }
-}) 
+    })
 }
 function DeleteListing(requestBody, callback){
 
@@ -307,59 +285,6 @@ function PostListingPhoto(requestFiles, requestBody, callback){
            return callback(rows)
         })
     }
-    function UpdateAddress(requestBody, callback){
-        //check if updated address exists. If it does exist, then delete the current one and return "Address updated still."
-        //might need to delete address and listing 
-        listingDAL.CheckAddressExist(requestBody.street, requestBody.zipcode, function (err, res){
-            if (err){
-                return callback({
-                    "Error" : err,
-                    "Response" : ""
-                })
-            }
-            else{
-                var count = res[0]['count(*)'];
-                
-                //this deletes address if the updated one exists
-                //listings is dependent on address, needs to be other way around
-                //because of this, an address cant be deleted since some listings reference it
-                if (count == 1){
-                    listingDAL.DeleteAddress(requestBody.addressId, function(err, res){
-                        if (err){
-                            return callback({
-                                "Error" : err,
-                                "Response" : ""
-                            })
-                        }
-                        else{
-                            return callback({
-                                "Error" : "",
-                                "Response" : "Address Updated"
-                            })
-                        }
-                    })
-                }
-                //updates to new address
-                else{
-                    listingDAL.UpdateAddress(requestBody.street, requestBody.city, requestBody.state, requestBody.zipcode,
-                         requestBody.addressId, function(err, res){
-                            if (err){
-                                return callback({
-                                    "Error" : err,
-                                    "Response" : ""
-                                })
-                            }
-                            else{
-                                return callback({
-                                    "Error" : "",
-                                    "Response" : "Address Updated"
-                                })
-                            }
-                    })
-                }
-            }
-        })
-    }
 //need to do update listings and get specific types of listings based on location, status price, etc.
 //for update listings, need to send elements that werent changed with the ones that were changed
 //update with pictures 
@@ -382,6 +307,5 @@ module.exports = {
     GetListingCity,
     GetListingZipcode,
     GetListingBedsLess,
-    GetListingPriceLess, 
-    UpdateAddress
+    GetListingPriceLess
 }
