@@ -1,0 +1,468 @@
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Testimonial Page*/
+.heading {
+  font-family: "Garamond", serif;
+  text-align: center;
+  font-size: 2em;
+  color: #a48c50;
+  margin: 20px 0 30px;
+}
+
+/* For Pop up calendly */
+.calendly-popup {
+  background-color: white !important;
+}
+
+.sub-heading {
+  font-family: "Brush Script MT", cursive;
+  position: relative;
+  letter-spacing: 4px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  color: #000000;
+  margin: 0 0 20px;
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+.module-title {
+  padding-top: 25px;
+  font-family: "Cinzel", serif;
+  position: relative;
+  letter-spacing: 4px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  color: #a48c50;
+  margin: 0 0 20px;
+}
+
+/* Contact Page*/
+.module-title {
+  padding-top: 25px;
+  font-family: "Cinzel", serif;
+  position: relative;
+  letter-spacing: 4px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  color: #a48c50;
+  margin: 0 0 20px;
+}
+
+.buyerVitrual-btn {
+  background-color: #050505;
+  border-radius: 2px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 7px 80px;
+  text-decoration: none;
+}
+
+.SellersVitrual-btn {
+  background-color: #d50e2f;
+  border-radius: 2px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 7px 80px;
+  text-decoration: none;
+}
+
+.module,
+.module-small {
+  position: relative;
+  padding: 10px 0;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.container {
+  width: 750px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  padding: 2px 0;
+  display: block;
+}
+
+.divider-w {
+  border-top: 1px solid #eaeaea;
+  margin: 0;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.icon-mobile,
+.icon-laptop,
+.icon-desktop,
+.icon-tablet,
+.icon-phone,
+.icon-document,
+.icon-documents,
+.icon-search,
+.icon-clipboard,
+.icon-newspaper,
+.icon-notebook,
+.icon-book-open,
+.icon-browser,
+.icon-calendar,
+.icon-presentation,
+.icon-picture,
+.icon-pictures,
+.icon-video,
+.icon-camera,
+.icon-printer,
+.icon-toolbox,
+.icon-briefcase,
+.icon-wallet,
+.icon-gift,
+.icon-bargraph,
+.icon-grid,
+.icon-expand,
+.icon-focus,
+.icon-edit,
+.icon-adjustments,
+.icon-ribbon,
+.icon-hourglass,
+.icon-lock,
+.icon-megaphone,
+.icon-shield,
+.icon-trophy,
+.icon-flag,
+.icon-map,
+.icon-puzzle,
+.icon-basket,
+.icon-envelope,
+.icon-streetsign,
+.icon-telescope,
+.icon-gears,
+.icon-key,
+.icon-paperclip,
+.icon-attachment,
+.icon-pricetags,
+.icon-lightbulb,
+.icon-layers,
+.icon-pencil,
+.icon-tools,
+.icon-tools-2,
+.icon-scissors,
+.icon-paintbrush,
+.icon-magnifying-glass,
+.icon-circle-compass,
+.icon-linegraph,
+.icon-mic,
+.icon-strategy,
+.icon-beaker,
+.icon-caution,
+.icon-recycle,
+.icon-anchor,
+.icon-profile-male,
+.icon-profile-female,
+.icon-bike,
+.icon-wine,
+.icon-hotairballoon,
+.icon-globe,
+.icon-genius,
+.icon-map-pin,
+.icon-dial,
+.icon-chat,
+.icon-heart,
+.icon-cloud,
+.icon-upload,
+.icon-download,
+.icon-target,
+.icon-hazardous,
+.icon-piechart,
+.icon-speedometer,
+.icon-global,
+.icon-compass,
+.icon-lifesaver,
+.icon-clock,
+.icon-aperture,
+.icon-quote,
+.icon-scope,
+.icon-alarmclock,
+.icon-refresh,
+.icon-happy,
+.icon-sad,
+.icon-facebook,
+.icon-twitter,
+.icon-googleplus,
+.icon-rss,
+.icon-tumblr,
+.icon-linkedin,
+.icon-dribbble {
+  font-family: "et-line";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+}
+
+.alt-features-title {
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+
+features-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  margin: 16px 0 15px;
+}
+
+.font-alt {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.alt-features-item {
+  padding-left: 0;
+  margin: 0 0 30px;
+  text-align: center;
+  position: relative;
+}
+
+.alt-features-icon {
+  position: static;
+  width: auto;
+  margin: 0 auto 8px;
+  left: 0;
+  top: 0;
+  text-align: center;
+  line-height: 40px;
+  font-size: 28px;
+}
+
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.icon-mobile,
+.icon-laptop,
+.icon-desktop,
+.icon-tablet,
+.icon-phone,
+.icon-document,
+.icon-documents,
+.icon-search,
+.icon-clipboard,
+.icon-newspaper,
+.icon-notebook,
+.icon-book-open,
+.icon-browser,
+.icon-calendar,
+.icon-presentation,
+.icon-picture,
+.icon-pictures,
+.icon-video,
+.icon-camera,
+.icon-printer,
+.icon-toolbox,
+.icon-briefcase,
+.icon-wallet,
+.icon-gift,
+.icon-bargraph,
+.icon-grid,
+.icon-expand,
+.icon-focus,
+.icon-edit,
+.icon-adjustments,
+.icon-ribbon,
+.icon-hourglass,
+.icon-lock,
+.icon-megaphone,
+.icon-shield,
+.icon-trophy,
+.icon-flag,
+.icon-map,
+.icon-puzzle,
+.icon-basket,
+.icon-envelope,
+.icon-streetsign,
+.icon-telescope,
+.icon-gears,
+.icon-key,
+.icon-paperclip,
+.icon-attachment,
+.icon-pricetags,
+.icon-lightbulb,
+.icon-layers,
+.icon-pencil,
+.icon-tools,
+.icon-tools-2,
+.icon-scissors,
+.icon-paintbrush,
+.icon-magnifying-glass,
+.icon-circle-compass,
+.icon-linegraph,
+.icon-mic,
+.icon-strategy,
+.icon-beaker,
+.icon-caution,
+.icon-recycle,
+.icon-anchor,
+.icon-profile-male,
+.icon-profile-female,
+.icon-bike,
+.icon-wine,
+.icon-hotairballoon,
+.icon-globe,
+.icon-genius,
+.icon-map-pin,
+.icon-dial,
+.icon-chat,
+.icon-heart,
+.icon-cloud,
+.icon-upload,
+.icon-download,
+.icon-target,
+.icon-hazardous,
+.icon-piechart,
+.icon-speedometer,
+.icon-global,
+.icon-compass,
+.icon-lifesaver,
+.icon-clock,
+.icon-aperture,
+.icon-quote,
+.icon-scope,
+.icon-alarmclock,
+.icon-refresh,
+.icon-happy,
+.icon-sad,
+.icon-facebook,
+.icon-twitter,
+.icon-googleplus,
+.icon-rss,
+.icon-tumblr,
+.icon-linkedin,
+.icon-dribbble {
+  font-family: "et-line";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+/* Contact Page*/
+
+body {
+  background: #bdc3c7;
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
+  background: linear-gradient(to right, #2c3e50, #bdc3c7);
+}
+
+.form {
+  background-color: white;
+  border-radius: 5px;
+  width: 550px;
+  margin: 20px auto;
+  padding: 20px;
+  /* height: 600px; */
+}
+
+.form-body {
+  text-align: left;
+  padding: 20px 10px;
+}
+
+.form-body > * {
+  padding: 5px;
+}
+
+.form__label {
+  width: 40%;
+}
+
+.form_input {
+  width: 60%;
+}
+
+.footer {
+  text-align: center;
+}
