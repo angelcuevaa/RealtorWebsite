@@ -2,7 +2,7 @@ let mysql = require('mysql2');
 let conn = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "Pass123!@123",
+    password: "password",
     database: "realtor"
   });
 function GetAllListings(){
@@ -103,10 +103,10 @@ function GetAddressId(address, callback){
     });
 
 }
-function CheckAddressExist(address_id, callback){
-    var query = 'SELECT count(*) from realtor.address where address_id = ?';
+function CheckAddressExist(street, zipcode, callback){
+    var query = 'SELECT count(*) from realtor.address where street = ? and zipcode = ?';
 
-    conn.query(query, [address_id], function(err, res){
+    conn.query(query, [street, zipcode], function(err, res){
         if (err){
             return callback(err, null);
         }

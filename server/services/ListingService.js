@@ -110,14 +110,13 @@ function UpdateListing(requestBody, callback){
 
 function PostListing(requestBody, callback){
     var address = {
-        "addressId" : requestBody.addressId,
         "street" : requestBody.street,
         "city" : requestBody.city,
         "state" : requestBody.state,
         "zipcode" : requestBody.zipcode
     };
     //need to check if address exists before posting it
-    listingDAL.CheckAddressExist(address.addressId, function(err, res){
+    listingDAL.CheckAddressExist(address.street, address.zipcode, function(err, res){
         if (err){
             return callback({
                 "Error" : err,
