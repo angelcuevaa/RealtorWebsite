@@ -1,42 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../Home/Home.css";
-import logo from "../../img/image.jpeg";
-import cardImage from "../../img/property.jpeg";
 import TestimonialSlider from "./TestimonialSlider";
 import Axios from "axios";
-
-import {
-  MDBBtn,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBInputGroup,
-  MDBRow
-} from "mdb-react-ui-kit";
+import SingleList from "../OurListing/SingleList";
 
 function Home() {
 
   const [listing, setListing] = React.useState([]);
 
-
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_API_BASE_URL}/listings`).then((response) => {
+    try {
+      Axios.get(`${process.env.REACT_APP_API_BASE_URL}/listings`).then((response) => {
       setListing(response.data);
     });
+    } catch (error) {
+      console.log(error);
+    }
+    
   }, []);
 
 
   return (
     <div className="container-fluid">
       {/* Section 1: Search */}
-      <div className="row banner_search">
-        <h1 className="heading" style={{ color: "black" }}>
-          - ABC Real Estates -
+      <div className="row banner_search pt-5" style={{
+        height: "300px",
+        backgroundSize: "cover",
+      
+        backgroundImage: `url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=875&q=80")`,
+      }}>
+        <h1 className="text-center pt-5" style={{ color: "black" }}>
+          - Pankaj Patel Realtor -
         </h1>
-        <h2>Welcome to Real Estates </h2>
-        <div className="input-group">
-          <div className="form-outline col-md-6 m-3 w-65">
+        <h2 className="text-center mb-2">Welcome to Real Estates </h2>
+        {/* <div className="input-group justify-content-center">
+          <div className="form-outline col-md-6 p-0">
             <input
               type="search"
               id="form1"
@@ -44,26 +42,16 @@ function Home() {
               placeholder="Search"
             />
           </div>
-          {/*<i className="col-md-1 fas fa-search m-3"></i>*/}
-          <button type="button" className="btn btn-primary col-md-1 m-3">
-            <i className="fas fa-search"></i>
-          </button>
-          <button
-            type="button"
-            className="btn col-md-1 m-3 more-options-button"
-          >
-            <a href="../Search">More Options</a>
-          </button>
-        </div>
+          <button type="button" className="btn btn-primary">Search</button>
+
+        </div> */}
       </div>
 
       {/*Section 2: About Agent*/}
-      <div className="row about_agent">
-        <div className="col-md-3 mr-3 person_image">
-          <img src={logo} alt="BigCo Inc. logo" />
-        </div>
-        <div className="col-md-8 mt-5">
-          <h2>Hello! I am (Agent Name) </h2>
+      <div className="container-md text-center">
+        <div className="col-md-12 mt-5">
+        <i class="bi bi-person" style={{fontSize: "30px"}}></i>
+          <h2>Hello! I am Pankaj Patel </h2>
           <p>
             I specialize in bringing you the best homes for sale and real estate
             listings in the area. Whether you are buying a home, selling a home
@@ -72,72 +60,14 @@ function Home() {
         </div>
       </div>
 
-      {/*Section 3: Featured Homes*/}
-      <div className="row featured_section">
-        <div className="col-md-12 view_property_image ">
-          <h2 className="mt-4">Featured House</h2>
-          <div className="d-flex justify-content-center">
-            <button type="button" className="btn btn-success m-3">
-              View Homes
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/*Section 4: Featured Listings*/}
-      <div className="mb-4">
-        <h2>Our Featured Listings </h2>
+      <div className="container-md mt-5">
+      <h2 className="text-center">Our Featured Listings </h2>
         <hr />
         <div className="text-center mt-2">
           <a href="../our-listing" className="link-light">View Listing</a>
         </div>
-      </div>
-      <div className="container-md mt-5">
-        <div className="row d-flex">
-          {listing.map((item, index) => (
-            <div className="col-md-4 mb-4" key={index}>
-              <div className="card border-0">
-                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." />
-                <div>
-                  <div className="p-2 bg-info">
-                    <span className="me-3">{item['listing_number_of_beds']} Bed</span>
-                    -
-                    <span className="ms-3">{item['listing_number_of_baths']} Bath</span>
-                  </div>
-
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title">
-                    {item['listing_name'].substring(0, 50)}
-                  </h5>
-                  <p className="card-text">
-                    {item['listing_description'].substring(0, 50)}
-                  </p>
-                  <div className="row">
-                    <div className="col">
-                      <p className="card-text">
-                        Price: <small className="text-muted">
-                          ${item['listing_price']}
-                        </small>
-                      </p>
-                    </div>
-                    <div className="col">
-                      <p className="card-text">
-                        <small className="text-muted">
-                          {item['street']}, {item['city']}, {item["state"]}, {item["zipcode"]}
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="d-grid">
-                    <a href={`/our-listing/${item['listings_id']}`}
-                      className="btn btn-primary btn-sm block">View Details</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <SingleList listing={listing} />
       </div>
       {/* <div className="row d-flex justify-content-center listing listing-section">
         
@@ -210,77 +140,33 @@ function Home() {
       </div> */}
 
       {/*Section 5: New Listings*/}
-      <div className="">
-        <div className="mb-4">
-          <h2>Newly Listings ::: What your Neighbors are Saying </h2>
-          <hr />
-          <div className="text-center mt-2">
-            <a href="../OurListing">View All</a>
-          </div>
-        </div>
-        <div className="container-md mt-5">
-          <div className="row d-flex">
-            {listing.map((item, index) => (
-              <div className="col-md-4 mb-4" key={index}>
-                <div className="card border-0">
-                  <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." />
-                  <div>
-                    <div className="p-2 bg-info">
-                      <span className="me-3">{item['listing_number_of_beds']} Bed</span>
-                      -
-                      <span className="ms-3">{item['listing_number_of_baths']} Bath</span>
-                    </div>
+      
 
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title">
-                      {item['listing_name'].substring(0, 50)}
-                    </h5>
-                    <p className="card-text">
-                      {item['listing_description'].substring(0, 50)}
-                    </p>
-                    <div className="row">
-                      <div className="col">
-                        <p className="card-text">
-                          Price: <small className="text-muted">
-                            ${item['listing_price']}
-                          </small>
-                        </p>
-                      </div>
-                      <div className="col">
-                        <p className="card-text">
-                          <small className="text-muted">
-                            {item['street']}, {item['city']}, {item["state"]}, {item["zipcode"]}
-                          </small>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="d-grid">
-                      <a href={`/our-listing/${item['listings_id']}`}
-                        className="btn btn-primary btn-sm block">View Details</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="container-md mt-5">
+        <h2 className="text-center">Newly Listed</h2>
+        <hr />
+        <SingleList listing={listing} />
+          
         </div>
-      </div>
 
       {/*Section 6: Testimonials */}
-      <div className="row">
-        <h2 className="sub-heading"> Section 6: Testimonials Slider </h2>
+      <div className="row mb-5">
+        <h2 className="text-center mb-4"> Testimonials </h2>
         <TestimonialSlider />
       </div>
 
       {/*Section 7: Contact Info*/}
       <div className="row">
-        <h2 className="sub-heading"> Section 7: Contact Information </h2>
+        <h2 className="text-center"> Contact Information </h2>
       </div>
-      <div className="sub-heading">
-        {" "}
+      <h4 className="text-center mb-3">
         Please contact me for any more information or inquiry..!!
-      </div>
+      </h4>
+      <a href="../contact" className="link-light d-flex justify-content-center mb-5">
+        <button type="button" className="btn btn-primary">
+          Contact Us
+        </button>
+      </a>
     </div>
   );
 }

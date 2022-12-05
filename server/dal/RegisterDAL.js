@@ -1,12 +1,6 @@
 let mysql = require('mysql2');
 const bcrypt = require("bcrypt");
-
-let conn = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "Pass123!@123",
-    database: "realtor"
-  });
+const conn = require('../database');
 
   function PostUser(username, hash){
     conn.query(

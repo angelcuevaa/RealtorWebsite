@@ -62,8 +62,8 @@ function TestimonialSlider() {
             <i className="bx bxs-quote-alt-left quote-icon"></i>
 
             <div className="details">
-              <span className="name">Peter</span>
-              <span className="job">Anaheim, California</span>
+              <span className="name">Emma</span>
+              <span className="job">Cerritos, California</span>
             </div>
           </div>
         </SwiperSlide>
@@ -79,8 +79,8 @@ function TestimonialSlider() {
             <i className="bx bxs-quote-alt-left quote-icon"></i>
 
             <div className="details">
-              <span className="name">Peter</span>
-              <span className="job">Anaheim, California</span>
+              <span className="name">John</span>
+              <span className="job">Lakewood, California</span>
             </div>
           </div>
         </SwiperSlide>

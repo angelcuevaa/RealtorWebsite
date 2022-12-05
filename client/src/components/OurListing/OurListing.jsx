@@ -1,64 +1,62 @@
 import React, { useEffect } from "react";
 import Axios from "axios";
+import SingleList from "./SingleList";
 
 function OurListing() {
 
   const [listing, setListing] = React.useState([]);
+  // sort by price
+  const [sort, setSort] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
-
+  // on sort change
+  const handleSortChange = (e) => {
+    setSort(e.target.value);
+    if (sort === "asc") {
+      setListing([...listing].sort((a, b) => a.listing_price - b.listing_price));
+    } else if (sort === "desc") {
+      setListing([...listing].sort((a, b) => b.listing_price - a.listing_price));
+    }
+  };
+  
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_API_BASE_URL}/listings`).then((response) => {
-      setListing(response.data);
-    });
+    try {
+      setIsLoading(true);
+      Axios.get(`${process.env.REACT_APP_API_BASE_URL}/listings`).then((response) => {
+        setListing(response.data);
+        setIsLoading(false);
+      });
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+    
   }, []);
+
+  console.log(listing);
 
   return (
     <div className="container-md mt-5">
-      <div className="row d-flex">
-        {listing.map((item, index) => (
-          <div className="col-md-4 mb-4" key={index}>
-            <div className="card border-0">
-              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" className="card-img-top" alt="..." />
-              <div>
-                <div className="p-2 bg-info">
-                  <span className="me-3">{item['listing_number_of_beds']} Bed</span>
-                  -
-                  <span className="ms-3">{item['listing_number_of_baths']} Bath</span>
-                </div>
-
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">
-                  {item['listing_name'].substring(0, 50)}
-                </h5>
-                <p className="card-text">
-                  {item['listing_description'].substring(0, 50)}
-                </p>
-                <div className="row">
-                  <div className="col">
-                    <p className="card-text">
-                      Price: <small className="text-muted">
-                        ${item['listing_price']}
-                      </small>
-                    </p>
-                  </div>
-                  <div className="col">
-                    <p className="card-text">
-                      <small className="text-muted">
-                        {item['street']}, {item['city']}, {item["state"]}, {item["zipcode"]}
-                      </small>
-                    </p>
-                  </div>
-                </div>
-                <div className="d-grid">
-                  <a href={`/our-listing/${item['listings_id']}`}
-                    className="btn btn-primary btn-sm block">View Details</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="col-md-3 offset-md-9 mb-3">
+        <select className="form-select" onChange={handleSortChange} disabled={listing.length === 0}>
+          <option value="asc">Price: High to Low</option>
+          <option value="desc">Price: Low to High</option>
+        </select>
       </div>
+
+      {
+        isLoading ? <div className="text-center">Loading...</div> : ""
+      }
+
+      {
+        listing.length === 0 ? (
+          <div className="text-center mb-5">
+            <h3>No Listing Found</h3>
+          </div>
+        ) : (
+          <SingleList listing={listing} />
+        )
+      }
     </div>
   )
 }
