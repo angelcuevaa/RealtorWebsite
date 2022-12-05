@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 const express = require ('express')
 const session = require('express-session')
 const cookieParser = require("cookie-parser");
@@ -8,6 +8,7 @@ const ListingRoutes = require('./routes/ListingRoutes')
 bodyParser = require('body-parser');
 const cors = require("cors");
 const fileUpload = require('express-fileupload');
+
 
 
 const app = express()

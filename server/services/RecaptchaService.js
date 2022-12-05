@@ -3,6 +3,8 @@ const fetch = require('isomorphic-fetch');
 const request = require('sync-request');
 
 function sendRecaptcha (token) {
+    //change secret key to realtor's
+    //Need to add his domain 
     const secret_key = process.env.RECAPTCHA_SECRET_KEY;
     const url = "https://www.google.com/recaptcha/api/siteverify?secret=" + secret_key + "&response=" + token;
     var message;

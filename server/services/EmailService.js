@@ -1,6 +1,7 @@
 
 const AWS = require('aws-sdk');
 
+//chnage these keys to realtor's amazon ses account
 const SES_CONFIG = {
     accessKeyId: process.env.EMAIL_ACCESS_KEY,
     secretAccessKey: process.env.EMAIL_API_KEY,
@@ -11,6 +12,7 @@ const AWS_SES = new AWS.SES(SES_CONFIG);
 
 let sendEmail = (recipientEmail, name, message) => {
     let params = {
+      //change the source to the realtor's email
       Source: 'angelcueva47@gmail.com',
       Destination: {
         ToAddresses: [
@@ -34,21 +36,7 @@ let sendEmail = (recipientEmail, name, message) => {
     return AWS_SES.sendEmail(params).promise();
 };
 
-let sendTemplateEmail = (recipientEmail) => {
-    let params = {
-      Source: 'angelcueva45@yahoo.com',
-      Template: '<name of your template>',
-      Destination: {
-        ToAddresses: [ 
-          recipientEmail
-        ]
-      },
-      TemplateData: '{ \"name\':\'John Doe\'}'
-    };
-    return AWS_SES.sendTemplatedEmail(params).promise();
-};
 
 module.exports = {
   sendEmail,
-  sendTemplateEmail,
 };
