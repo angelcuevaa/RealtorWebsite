@@ -1,5 +1,6 @@
 
 const AWS = require('aws-sdk');
+require('dotenv').config()
 
 const SES_CONFIG = {
     accessKeyId: process.env.EMAIL_ACCESS_KEY,
@@ -14,7 +15,7 @@ let sendEmail = (recipientEmail, name, message) => {
       Source: 'angelcueva47@gmail.com',
       Destination: {
         ToAddresses: [
-          recipientEmail
+          'angelcueva47@gmail.com'
         ],
       },
       ReplyToAddresses: [],
@@ -22,7 +23,7 @@ let sendEmail = (recipientEmail, name, message) => {
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: message,
+            Data: message + '\nContact Email: ' + recipientEmail,
           },
         },
         Subject: {
