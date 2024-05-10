@@ -1,5 +1,5 @@
 let mysql = require('mysql2');
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 let conn = mysql.createConnection({
     user: "root",

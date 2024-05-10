@@ -1,14 +1,15 @@
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const RegisterDAL = require('../dal/RegisterDAL');
 const saltRounds = 10;
 
 function RegisterAccountService(username, password){
-    bcrypt.hash(password, saltRounds, (err, hash) => {
-        if (err){
-            console.log (err);
-        }
-        RegisterDAL.PostUser(username, hash)
-    })
+    // bcrypt.hash(password, saltRounds, (err, hash) => {
+    //     if (err){
+    //         console.log (err);
+    //     }
+    //     RegisterDAL.PostUser(username, hash)
+    // })
+    return 0
 }
 
 function LoginAccountService(username, password, callback){

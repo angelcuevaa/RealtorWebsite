@@ -51,5 +51,5 @@ app.listen (3200, () =>{
 
 //routes
 app.use(contactRoutes);
-app.use(RegisterRoutes);
+// app.use(RegisterRoutes);
 app.use(ListingRoutes);

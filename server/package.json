@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1231.0",
-    "bcrypt": "^5.1.0",
     "busboy": "^1.6.0",
     "connect-busboy": "^1.0.0",
     "cookie-parser": "^1.4.6",
